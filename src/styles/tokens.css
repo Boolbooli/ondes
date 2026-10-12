@@ -1,0 +1,95 @@
+/*
+ * Two worlds. Midnight enamel is the default and also any `.enamel` element in either theme
+ * (masthead, dock, player, toasts): signage keeps its colours. `data-theme='light'` on the
+ * root turns the rest into the white bevelled tile wall. Both selectors weigh the same, so the
+ * light block must stay after the dark one.
+ */
+:root,
+.enamel {
+  color-scheme: dark;
+  --ground: #0b1230;
+  --raised: #141d45;
+  --field: rgb(246 243 236 / 0.09);
+  --hover: rgb(246 243 236 / 0.06);
+  --press: rgb(246 243 236 / 0.12);
+  --text: #f6f3ec;
+  --text-2: #c3cae4;
+  --text-3: #9aa4cb;
+  --rule: #26336b;
+  --signal: #ffb13b;
+  --danger: #ff8a7a;
+  --stop-fill: var(--porcelain);
+  --surface: var(--raised);
+  --thumb: #3b4785;
+  --scrim: rgb(3 6 20 / 0.6);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --ground: #f3f5f6;
+  --raised: #fff;
+  --field: rgb(18 26 58 / 0.06);
+  --hover: rgb(18 26 58 / 0.05);
+  --press: rgb(18 26 58 / 0.1);
+  --text: #121a3a;
+  --text-2: #3e4770;
+  --text-3: #535b80;
+  --rule: #d5dae0;
+  --signal: #8a5300;
+  --danger: #b3261e;
+  --stop-fill: #fff;
+  --surface: #f7f8f8;
+  --thumb: #fff;
+  --scrim: rgb(11 18 48 / 0.42);
+}
+
+:root {
+  --porcelain: #f6f3ec;
+  --enamel: #0b1230;
+  --amber: #ffb13b;
+  /* Unlit segments of the platform board: still 4.6:1 on it. */
+  --amber-dim: #a27838;
+  --led-red: #ff7b66;
+  --board: #07090f;
+  --brand: #d93a2b;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --gutter: 20px;
+  /* Height covered by the iOS keyboard, set on the root by the app. */
+  --kb: 0px;
+
+  --font-display: 'Archivo Variable', 'Arial Narrow', system-ui, sans-serif;
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-led: 'Doto Variable', ui-monospace, monospace;
+}
+
+@media (prefers-contrast: more) {
+  :root,
+  .enamel {
+    --text-2: #e3e7f5;
+    --text-3: #c9cfe6;
+    --rule: #4a5a9c;
+  }
+
+  [data-theme='light'] {
+    --text-2: #222a4d;
+    --text-3: #2e3660;
+    --rule: #9aa3b5;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root,
+  .enamel {
+    --scrim: rgb(3 6 20 / 0.85);
+  }
+
+  [data-theme='light'] {
+    --scrim: rgb(11 18 48 / 0.72);
+  }
+}

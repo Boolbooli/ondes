@@ -1,0 +1,107 @@
+.settings {
+  display: grid;
+  gap: 28px;
+  padding-top: 4px;
+}
+
+.group {
+  display: grid;
+  gap: 12px;
+}
+
+.group__title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.group__hint {
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+
+.group__hint--lead {
+  color: var(--text);
+}
+
+.group .pill-btn {
+  justify-self: start;
+}
+
+/* Installation steps, drawn as a short line in the brand red. */
+.steps {
+  counter-reset: step;
+}
+
+.steps__step {
+  position: relative;
+  min-height: 44px;
+  padding: 6px 0 14px 44px;
+  counter-increment: step;
+}
+
+.steps__step::before {
+  content: counter(step);
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--brand);
+  border-radius: 50%;
+  background: var(--stop-fill);
+  color: var(--enamel);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps__step::after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  bottom: -17px;
+  left: 12px;
+  width: 6px;
+  background: var(--brand);
+}
+
+.steps__step:last-child::after {
+  content: none;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about__mark {
+  flex: none;
+}
+
+.about__name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.about__version {
+  color: var(--text-2);
+  font-size: 0.875rem;
+}
+
+.about__text {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+  DIRECTION CONTRACT — Ondes
+  THESIS: Radio as a métro network. Stations are stops on enamel lines; Ondes refuses the logo-tile wall of ad-funded radio apps.
+  OWN-WORLD: Midnight-blue enamel ground, porcelain keylines and stop rings, line inks (scarlet, cobalt, pink, violet, amber, teal, green); the light theme is the white bevelled métro tile wall. Condensed transit sans for station names; amber dot-matrix only on the platform board.
+  STORY: See your line and what is on air, tap a stop, hear it at once, trust that nothing cuts in.
+  FIRST VIEWPORT: Enamel band with wordmark, search, settings and line roundels; the chosen line drawn as a vertical strip map, each stop with its programme; the enamel plaque player docked at the bottom.
+  FORM: Plan du métro (dealt challenger), staged as strip maps with a travelling “Vous êtes ici” marker. Seed 843a3f2c.
+-->
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ondes</title>
+    <meta
+      name="description"
+      content="Vos radios en direct : France Inter, franceinfo, FIP, RTL, Europe 1, Radio Courtoisie et des radios musicales du monde entier. Aucune publicité ajoutée par l’application."
+    />
+    <meta name="theme-color" content="#0b1230" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ondes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <script>
+      // Apply the saved theme and language before first paint to avoid a flash.
+      (function () {
+        var root = document.documentElement;
+        try {
+          var s = JSON.parse(localStorage.getItem('ondes:v1:settings') || '{}');
+          var theme = s.theme === 'light' || s.theme === 'dark' ? s.theme : null;
+          if (!theme) theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          root.dataset.theme = theme;
+          if (s.lang === 'en') root.lang = 'en';
+        } catch (e) {
+          root.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>Ondes a besoin de JavaScript pour fonctionner.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

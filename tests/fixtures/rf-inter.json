@@ -1,0 +1,52 @@
+{
+  "prev": [
+    {
+      "firstLine": "Le direct",
+      "firstLineUuid": null,
+      "firstLinePath": null,
+      "secondLine": "Le direct de France Inter",
+      "cover": "e4213a98-654d-4c07-addb-89e28e31ef10",
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "now": {
+    "firstLine": "Le journal de 18h du week-end",
+    "firstLineUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "firstLineExpressionUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "firstLineUuidUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "firstLineUuidExpressionUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "firstLinePath": "franceinter/podcasts/le-journal-de-18h-du-week-end",
+    "firstLinePathPath": "franceinter/podcasts/le-journal-de-18h-du-week-end",
+    "firstLinePathUuid": "62ef9d9e-5f50-453e-b203-b246af89473f",
+    "firstLinePathConceptUuid": "62ef9d9e-5f50-453e-b203-b246af89473f",
+    "secondLine": "Le journal de 18h00 du dimanche 11 octobre 2026",
+    "secondLineUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "secondLineExpressionUuid": "3ec49e39-ec7a-4ed7-a85d-1a7ea58402f8",
+    "cover": "9b9b0fa1-a0bf-43d9-bb71-9950264a1730",
+    "startTime": 1791734400,
+    "endTime": 1791738000
+  },
+  "next": [
+    {
+      "firstLine": "La chronique de Paola Puerari",
+      "firstLinePath": "franceinter/podcasts/la-chronique-de-paola-puerari",
+      "firstLineUuid": "a405aa15-c56f-401d-90d5-3507d289859b",
+      "firstLineConceptUuid": "33fcb195-dbb8-4e6e-a3e6-1b520d293085",
+      "firstLineUuidPath": "franceinter/podcasts/le-18-20/le-18-20-du-dimanche-du-dimanche-11-octobre-2026-3641828",
+      "firstLineUuidUuid": "a405aa15-c56f-401d-90d5-3507d289859b",
+      "firstLineUuidExpressionUuid": "a405aa15-c56f-401d-90d5-3507d289859b",
+      "firstLinePathPath": "franceinter/podcasts/la-chronique-de-paola-puerari",
+      "firstLinePathUuid": "33fcb195-dbb8-4e6e-a3e6-1b520d293085",
+      "firstLinePathConceptUuid": "33fcb195-dbb8-4e6e-a3e6-1b520d293085",
+      "secondLine": "Le 18/20 du dimanche du dimanche 11 octobre 2026",
+      "secondLinePath": "franceinter/podcasts/le-18-20/le-18-20-du-dimanche-du-dimanche-11-octobre-2026-3641828",
+      "secondLineUuid": "a405aa15-c56f-401d-90d5-3507d289859b",
+      "secondLineExpressionUuid": "a405aa15-c56f-401d-90d5-3507d289859b",
+      "cover": "9b9b0fa1-a0bf-43d9-bb71-9950264a1730",
+      "startTime": 1791734400,
+      "endTime": 1791738000
+    }
+  ],
+  "delayToRefresh": 370000
+}

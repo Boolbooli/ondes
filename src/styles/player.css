@@ -1,0 +1,703 @@
+/* —— Header: the line being ridden, like the destination sign on a train —— */
+
+.player-head {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 8px;
+}
+
+.player-head__line {
+  display: flex;
+  grid-column: 2;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text-2);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.player-head__line > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* —— Player —— */
+
+.player {
+  --line-ink: var(--ink);
+  /* Everything on screen but the plaque, down to the actions: the sheet's head, the board, the name, the controls. */
+  --chrome-base: 24.625rem;
+  /* What is said about the programme: a tagline, or a title with two more lines and what comes next. */
+  --chrome-text: 1.9375rem;
+  /* The rewind timeline, on the stations that have one. */
+  --chrome-rewind: 0px;
+  /* Where the ads come from: one line, or a note on the stations that insert their own into the stream. */
+  --chrome-ads: 1.75rem;
+  /* The plaque gives way first, so the controls and the actions stay on screen. */
+  --plate: min(
+    100%,
+    340px,
+    max(
+      10rem,
+      100svh - var(--safe-top) - var(--safe-bottom) - var(--chrome-base) - var(--chrome-text) - var(--chrome-rewind) -
+        var(--chrome-ads)
+    )
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.player--meta {
+  --chrome-text: 6.875rem;
+}
+
+.player--timeshift {
+  --chrome-rewind: 5.375rem;
+}
+
+.player--note {
+  --chrome-ads: 6.0625rem;
+}
+
+.player__art {
+  width: var(--plate);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.7);
+  transition: scale 500ms var(--ease-out);
+}
+
+/* The authored plaque has its own keyline; a photo gets a hairline, so a dark one keeps its edge. */
+.player__art:has(.cover__img.is-loaded) {
+  box-shadow:
+    0 18px 40px -16px rgb(0 0 0 / 0.7),
+    0 0 0 1px rgb(246 243 236 / 0.08);
+}
+
+/* The plaque steps back while nothing plays. */
+.player:has(.led-board[data-status='paused'], .led-board[data-status='idle']) .player__art {
+  scale: 0.9;
+}
+
+.led-board {
+  --led-size: 1.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: var(--plate);
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: var(--board);
+  background-image: radial-gradient(circle, rgb(255 177 59 / 0.07) 0 1px, transparent 1.5px);
+  background-size: 4px 4px;
+  box-shadow:
+    inset 0 1px 3px rgb(0 0 0 / 0.8),
+    0 0 0 1px rgb(246 243 236 / 0.1);
+  color: var(--amber);
+  font-family: var(--font-led);
+  font-size: var(--led-size);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: left;
+  text-transform: uppercase;
+  container-type: inline-size;
+}
+
+.led-board[data-status='paused'],
+.led-board[data-status='idle'] {
+  color: var(--amber-dim);
+}
+
+.led-board[data-status='error'],
+.led-board[data-status='offline'] {
+  color: var(--led-red);
+}
+
+.led-board__word {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.led-board__aside {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* The lettering follows the plaque's width, so "EN DIRECT → 22:00" fits on the smallest one. */
+.led-board__word,
+.led-board__aside {
+  font-size: clamp(0.75rem, 9.5cqi, var(--led-size));
+}
+
+/* The bottom row of the board's dots, on its grid, lights up as the show goes by. */
+.led-board[data-progress]::before,
+.led-board[data-progress]::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  bottom: 4px;
+  left: 12px;
+  height: 4px;
+  background: radial-gradient(circle, currentcolor 0 1px, transparent 1.5px) 0 0 / 4px 4px repeat-x;
+  pointer-events: none;
+}
+
+.led-board[data-progress]::before {
+  opacity: 0.22;
+}
+
+.led-board[data-progress]::after {
+  clip-path: inset(0 calc((1 - var(--progress)) * 100%) 0 0);
+}
+
+.player__heading {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 18px;
+}
+
+.player__name {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Title and episode share three lines at most; the budget above counts on it. */
+.programme {
+  display: -webkit-box;
+  margin-top: 6px;
+  overflow: hidden;
+  color: var(--text-2);
+  text-wrap: pretty;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.programme--quiet {
+  font-size: 1.0625rem;
+}
+
+.programme__title {
+  color: var(--text);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.programme__next {
+  margin-top: 10px;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.programme__next-label {
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 420px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--field);
+  color: var(--text-2);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.note svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--signal);
+}
+
+/* Where the ads come from, in one line. Stations that insert their own into the stream get the note instead. */
+.adline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  margin-top: 10px;
+  color: var(--text-3);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.adline svg {
+  flex: none;
+  color: var(--signal);
+}
+
+.adline span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* —— Timeline: the hours behind, drawn as the line —— */
+
+.timeline {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 22px;
+}
+
+.timeline__rail {
+  --knob: 28px;
+  position: relative;
+  height: 44px;
+}
+
+.timeline__rail::before,
+.timeline__rail::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.timeline__rail::before {
+  right: 0;
+  background: var(--field);
+}
+
+.timeline__rail::after {
+  width: calc(var(--fill) * (100% - var(--knob)) + var(--knob) / 2);
+  background: var(--line-ink);
+}
+
+.timeline__range {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.timeline__range:focus-visible {
+  outline: none;
+}
+
+.timeline__range::-webkit-slider-runnable-track {
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+
+.timeline__range::-moz-range-track {
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+
+.timeline__range::-webkit-slider-thumb {
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  margin-top: 8px;
+  border: 4px solid var(--porcelain);
+  border-radius: 50%;
+  background: var(--line-ink);
+  box-shadow:
+    0 0 0 3px var(--ground),
+    0 2px 6px rgb(0 0 0 / 0.4);
+  appearance: none;
+}
+
+.timeline__range::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  border: 4px solid var(--porcelain);
+  border-radius: 50%;
+  background: var(--line-ink);
+  box-shadow:
+    0 0 0 3px var(--ground),
+    0 2px 6px rgb(0 0 0 / 0.4);
+}
+
+.timeline__range:focus-visible::-webkit-slider-thumb {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+.timeline__range:focus-visible::-moz-range-thumb {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+.timeline__bubble {
+  position: absolute;
+  bottom: calc(100% - 2px);
+  left: clamp(40px, calc(14px + var(--fill) * (100% - 28px)), calc(100% - 40px));
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--board);
+  box-shadow:
+    0 0 0 1px rgb(246 243 236 / 0.12),
+    0 6px 14px -6px rgb(0 0 0 / 0.6);
+  color: var(--amber);
+  font-family: var(--font-led);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.9;
+  translate: -50% 0;
+  transform-origin: 50% 100%;
+  transition:
+    opacity 160ms ease-out,
+    scale 160ms var(--ease-out);
+}
+
+.timeline[data-dragging] .timeline__bubble {
+  opacity: 1;
+  scale: 1;
+}
+
+.timeline__ticks {
+  position: relative;
+  height: 20px;
+  margin: 0 14px;
+  color: var(--text-3);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline__tick {
+  position: absolute;
+  top: 0;
+  left: calc(var(--at) * 100%);
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+.timeline__tick--live {
+  right: 0;
+  left: auto;
+  color: var(--signal);
+  font-weight: 600;
+  translate: 50% 0;
+}
+
+.timeline .pill-btn--live {
+  display: flex;
+  width: fit-content;
+  margin: 10px auto 0;
+}
+
+/* —— Transport —— */
+
+.transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 3.2vw, 14px);
+  margin-top: 22px;
+}
+
+.transport__step,
+.transport__skip {
+  width: 52px;
+  height: 52px;
+}
+
+.transport__play {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--porcelain);
+  box-shadow: 0 8px 20px -8px rgb(0 0 0 / 0.6);
+  color: var(--enamel);
+  transition: scale 160ms var(--ease-out);
+}
+
+.transport__play:active {
+  scale: 0.94;
+  transition-duration: 60ms;
+}
+
+.transport__play .spinner {
+  inset: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+}
+
+@media (max-width: 359px) {
+  .transport__step,
+  .transport__skip {
+    width: 44px;
+    height: 44px;
+  }
+
+  .transport__play {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+/* Margins on children, never `display: none`: this is a live region. */
+.player__status {
+  max-width: 420px;
+}
+
+.player__message {
+  margin-top: 14px;
+  color: var(--signal);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.player__status .pill-btn {
+  margin-top: 12px;
+}
+
+/* —— Actions —— */
+
+.player__actions {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 22px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.action {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 96px;
+  min-height: 64px;
+  padding: 8px 4px;
+  border-radius: 14px;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition:
+    background-color 160ms ease-out,
+    color 160ms ease-out,
+    scale 160ms var(--ease-out);
+}
+
+.action:active {
+  background: var(--press);
+  scale: 0.96;
+  transition-duration: 60ms;
+}
+
+.action[aria-pressed='true'] {
+  color: var(--text);
+}
+
+.action[aria-pressed='true'] svg {
+  color: var(--brand);
+}
+
+.action[data-on] {
+  color: var(--signal);
+}
+
+.action[aria-expanded='true'] {
+  background: var(--field);
+}
+
+/* —— Facts —— */
+
+.facts {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 18px;
+  text-align: left;
+}
+
+.facts__summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  border-radius: 12px;
+  color: var(--text-2);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.facts__summary::-webkit-details-marker {
+  display: none;
+}
+
+.facts__chevron {
+  transition: rotate 240ms var(--ease-out);
+}
+
+.facts[open] .facts__chevron {
+  rotate: 180deg;
+}
+
+.facts__list {
+  margin-top: 4px;
+  padding: 4px 16px;
+  border-radius: 14px;
+  background: var(--field);
+}
+
+.facts__row {
+  display: grid;
+  grid-template-columns: minmax(0, 7.5em) 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 0.9375rem;
+}
+
+.facts__row + .facts__row {
+  border-top: 1px solid var(--rule);
+}
+
+.facts__row dt {
+  color: var(--text-3);
+}
+
+.facts__row dd {
+  overflow-wrap: anywhere;
+}
+
+.facts__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 6px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.player--empty {
+  gap: 16px;
+  padding: 48px var(--gutter);
+  color: var(--text-2);
+}
+
+/* iPhone SE and short windows: a tighter rhythm keeps the plaque from shrinking too far. */
+@media (max-height: 720px) {
+  .player {
+    --chrome-base: 21.75rem;
+    --chrome-ads: 1.625rem;
+  }
+
+  .player--meta {
+    --chrome-text: 6.625rem;
+  }
+
+  .player--timeshift {
+    --chrome-rewind: 4.75rem;
+  }
+
+  .player--note {
+    --chrome-ads: 5.625rem;
+  }
+
+  .led-board {
+    --led-size: 1.125rem;
+    min-height: 40px;
+    margin-top: 12px;
+  }
+
+  .player__heading {
+    margin-top: 12px;
+  }
+
+  .programme__next {
+    margin-top: 6px;
+  }
+
+  .note {
+    margin-top: 10px;
+  }
+
+  .adline {
+    margin-top: 8px;
+  }
+
+  .timeline {
+    margin-top: 12px;
+  }
+
+  .transport {
+    margin-top: 14px;
+  }
+
+  .player__actions {
+    margin-top: 10px;
+  }
+
+  .action {
+    min-height: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player__art,
+  .facts__chevron {
+    transition: none;
+  }
+
+  .timeline__bubble {
+    scale: 1;
+    transition-property: opacity;
+  }
+}

@@ -1,0 +1,371 @@
+/* —— Buttons —— */
+
+.icon-btn {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition:
+    background-color 160ms ease-out,
+    scale 160ms var(--ease-out),
+    opacity 160ms ease-out;
+}
+
+@media (hover: hover) {
+  .icon-btn:hover:not(:disabled) {
+    background: var(--hover);
+  }
+}
+
+.icon-btn:active:not(:disabled) {
+  background: var(--press);
+  scale: 0.92;
+  transition-duration: 60ms;
+}
+
+.icon-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pill-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--ground);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    scale 160ms var(--ease-out),
+    opacity 160ms ease-out;
+}
+
+.pill-btn:has(> svg:first-child) {
+  padding-left: 16px;
+}
+
+.pill-btn:active:not([aria-disabled='true']) {
+  scale: 0.96;
+  transition-duration: 60ms;
+}
+
+.pill-btn--quiet {
+  background: var(--field);
+  color: var(--text);
+}
+
+.pill-btn--live {
+  background: var(--amber);
+  color: #1a1300;
+}
+
+.pill-btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.pill-btn .spinner {
+  position: static;
+  width: 18px;
+  height: 18px;
+}
+
+.pill-btn .spinner circle {
+  stroke: currentColor;
+}
+
+.text-btn {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--field);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition:
+    background-color 160ms ease-out,
+    color 160ms ease-out,
+    scale 160ms var(--ease-out);
+}
+
+.text-btn:active {
+  scale: 0.96;
+  transition-duration: 60ms;
+}
+
+[data-theme='light'] .text-btn {
+  background: var(--raised);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.text-btn[aria-pressed='true'],
+[data-theme='light'] .text-btn[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--ground);
+  box-shadow: none;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--field);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color 160ms ease-out,
+    scale 160ms var(--ease-out);
+}
+
+.chip:active {
+  background: var(--press);
+  scale: 0.95;
+  transition-duration: 60ms;
+}
+
+.chip--quiet {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--rule);
+  color: var(--text-2);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  animation: fade-in 220ms var(--ease-out) both;
+}
+
+/* —— Segmented control: native radios under a sliding thumb —— */
+
+.segmented {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  padding: 3px;
+  border-radius: 12px;
+  background: var(--field);
+}
+
+.segmented::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / var(--count));
+  translate: calc(var(--index) * 100%) 0;
+  border-radius: 9px;
+  background: var(--thumb);
+  transition: translate 320ms var(--ease-out);
+}
+
+[data-theme='light'] .segmented::before {
+  box-shadow:
+    0 1px 3px rgb(11 18 48 / 0.16),
+    0 0 0 0.5px rgb(11 18 48 / 0.08);
+}
+
+.segmented__option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 38px;
+  padding: 4px 10px;
+  border-radius: 9px;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: color 200ms ease-out;
+}
+
+.segmented__option:has(input:checked) {
+  color: var(--text);
+}
+
+.segmented__option:has(input:focus-visible) {
+  outline: 3px solid var(--text);
+  outline-offset: 1px;
+}
+
+.segmented__label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.swatch {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(128 136 170 / 0.7);
+}
+
+.swatch--light {
+  background: #fff;
+}
+
+.swatch--dark {
+  background: var(--enamel);
+}
+
+.swatch--auto {
+  background: linear-gradient(135deg, #fff 50%, var(--enamel) 50%);
+}
+
+/* —— Fields —— */
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field__label {
+  color: var(--text-2);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field__input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--field);
+  /* Below 17px, iOS zooms the page when the field takes focus. */
+  font-size: max(17px, 1rem);
+  appearance: none;
+  outline-offset: 0;
+}
+
+.field__input::placeholder {
+  color: var(--text-3);
+  opacity: 1;
+}
+
+/* —— Spinner: an arc around a play button while the stream connects —— */
+
+.spinner {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  animation: spin 1s linear infinite;
+}
+
+.spinner circle {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 3;
+  stroke-dasharray: 28 72;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* —— Art —— */
+
+.cover {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--enamel);
+  isolation: isolate;
+}
+
+.art,
+.art > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cover__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+.cover__img.is-loaded {
+  opacity: 1;
+}
+
+/* —— Roundels —— */
+
+.roundel {
+  --r: 32px;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--r);
+  height: var(--r);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-display);
+  font-size: calc(var(--r) * 0.56);
+  font-weight: 750;
+  font-stretch: 87.5%;
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 1;
+}
+
+.roundel--xs {
+  --r: 18px;
+  font-size: 11px;
+}
+
+.roundel--sm {
+  --r: 24px;
+}
+
+.roundel--md {
+  --r: 32px;
+}
+
+.roundel--lg {
+  --r: 44px;
+}
+
+.roundel__star {
+  width: 70%;
+  height: 70%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chips {
+    animation-name: fade-only;
+  }
+
+  .segmented::before {
+    transition: none;
+  }
+}
+
+@keyframes fade-only {
+  from {
+    opacity: 0;
+  }
+}

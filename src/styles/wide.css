@@ -1,0 +1,39 @@
+/* From 1024px wide (iPad landscape, desktop), the player stays open beside the map. */
+.shell--wide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.shell--wide .masthead {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 0;
+}
+
+.shell--wide .main {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.side {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--safe-top) max(var(--gutter), var(--safe-right)) calc(var(--safe-bottom) + 24px) var(--gutter);
+  border-left: 1px solid var(--rule);
+  background: var(--ground);
+}
+
+/* Nothing playing yet: the invitation sits in the middle of the panel. */
+.side .player--empty {
+  min-height: 100%;
+  justify-content: center;
+}
+
+/* Toasts centre on the map, clear of the side panel. */
+.shell--wide ~ .toasts {
+  right: calc(400px + 12px);
+}

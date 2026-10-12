@@ -1,0 +1,36 @@
+{
+  "prev": [
+    {
+      "firstLine": "FIP Rock",
+      "firstLinePath": "fip/radio-rock",
+      "secondLine": "De Bowie à Radiohead, de Lou Reed à Miossec, notre mix rock des genres et des générations",
+      "cover": "cda37279-f985-4017-bc03-2dad643c7306",
+      "favoriteUuid": null,
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "now": {
+    "firstLine": "FIP Rock",
+    "firstLinePath": "fip/radio-rock",
+    "secondLine": "Dire Straits • Angel of mercy",
+    "secondLineSongUuid": "c8640da5-baca-4014-856e-5dd4103ea4ce",
+    "cover": "116d13bd-cfd1-4b5f-b0ff-4e205e8e2bbc",
+    "favoriteUuid": "c8640da5-baca-4014-856e-5dd4103ea4ce",
+    "startTime": 1791734682,
+    "endTime": 1791734946
+  },
+  "next": [
+    {
+      "firstLine": "FIP Rock",
+      "firstLinePath": "fip/radio-rock",
+      "secondLine": "Elvis Costello And The Attractions • Accidents will happen",
+      "secondLineSongUuid": "a0243c25-1b54-41b2-a05e-0538e8ae59bf",
+      "cover": "a481eb38-20d4-4f03-906d-c477c72c8e8f",
+      "favoriteUuid": "a0243c25-1b54-41b2-a05e-0538e8ae59bf",
+      "startTime": 1791734946,
+      "endTime": 1791735121
+    }
+  ],
+  "delayToRefresh": 190000
+}

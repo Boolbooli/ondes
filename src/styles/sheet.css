@@ -1,0 +1,91 @@
+/* Bottom sheets. Sheet.tsx drives the transform and the scrim's opacity with a spring. */
+.sheet-root {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+}
+
+.sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+}
+
+.sheet {
+  position: absolute;
+  top: calc(var(--safe-top) + 10px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+  background: var(--ground);
+  box-shadow: 0 -1px 0 rgb(255 255 255 / 0.06);
+  color: var(--text);
+  will-change: transform;
+}
+
+.sheet.surface {
+  background: var(--surface);
+}
+
+.sheet--auto {
+  top: auto;
+  max-height: calc(100% - var(--safe-top) - 10px);
+}
+
+@media (min-width: 640px) {
+  .sheet {
+    top: max(calc(var(--safe-top) + 10px), 4vh);
+    width: min(560px, 100% - 32px);
+    margin-inline: auto;
+  }
+
+  .sheet--auto {
+    top: auto;
+  }
+}
+
+/* The grab area: the grabber and the header both drag the sheet down. */
+.sheet__top {
+  flex: none;
+  padding-top: 8px;
+  touch-action: none;
+}
+
+.sheet__grabber {
+  width: 36px;
+  height: 5px;
+  margin: 0 auto 4px;
+  border-radius: 3px;
+  background: var(--text-3);
+  opacity: 0.5;
+}
+
+.sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px 8px 20px;
+}
+
+.sheet__title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 max(var(--gutter), var(--safe-right)) calc(max(var(--kb), var(--safe-bottom)) + 24px)
+    max(var(--gutter), var(--safe-left));
+}

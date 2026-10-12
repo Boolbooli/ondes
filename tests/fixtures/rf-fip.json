@@ -1,0 +1,36 @@
+{
+  "prev": [
+    {
+      "firstLine": "FIP",
+      "firstLinePath": "fip",
+      "secondLine": "La radio la plus éclectique du monde",
+      "cover": "34e98566-058b-428f-a39e-d74bdef1cf77",
+      "favoriteUuid": null,
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "now": {
+    "firstLine": "FIP",
+    "firstLinePath": "fip",
+    "secondLine": "Placido Domingo • Andre chenier : Come un bel di di maggio (acte IV) air d'André Chenier",
+    "secondLineSongUuid": "ba7e19e7-cfd8-4397-8745-7c1a07e0b1ef",
+    "cover": "1f207ab7-e0d5-49f6-a9f1-d26e1d4c174e",
+    "favoriteUuid": "ba7e19e7-cfd8-4397-8745-7c1a07e0b1ef",
+    "startTime": 1791734726,
+    "endTime": 1791734916
+  },
+  "next": [
+    {
+      "firstLine": "FIP",
+      "firstLinePath": "fip",
+      "secondLine": "Lucio Battisti • E penso a te",
+      "secondLineSongUuid": "3abb7f16-83e0-4cc8-8ba0-d3dde868d09a",
+      "cover": "75fc850c-88eb-44be-96b0-01e8069626e1",
+      "favoriteUuid": "3abb7f16-83e0-4cc8-8ba0-d3dde868d09a",
+      "startTime": 1791734916,
+      "endTime": 1791735168
+    }
+  ],
+  "delayToRefresh": 160000
+}

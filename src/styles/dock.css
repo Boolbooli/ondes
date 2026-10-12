@@ -1,0 +1,154 @@
+/* The current station on an enamel plaque, docked like the next-train board on the platform. */
+.dock {
+  position: fixed;
+  z-index: 5;
+  right: max(10px, var(--safe-right));
+  bottom: max(12px, var(--safe-bottom));
+  left: max(10px, var(--safe-left));
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 10px;
+  border-radius: 20px;
+  background: var(--raised);
+  /* The pressed edge of a metal sign, then its shadow on the wall. */
+  box-shadow:
+    0 0 0 1px rgb(2 4 16 / 0.7),
+    0 12px 30px -10px rgb(2 4 16 / 0.6),
+    0 2px 6px rgb(2 4 16 / 0.3);
+  animation: dock-in 420ms var(--ease-out) both;
+}
+
+/* The porcelain keyline, inset from the edge as on the station plaques. */
+.dock::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1.5px solid var(--porcelain);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+[data-theme='light'] .dock {
+  box-shadow:
+    0 0 0 1px rgb(11 18 48 / 0.5),
+    0 12px 28px -10px rgb(11 18 48 / 0.45),
+    0 2px 6px rgb(11 18 48 / 0.18);
+}
+
+.dock__open {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.dock__art {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.dock__text {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dock__name {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dock__status {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.dock__onair {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The board's one word, in amber dot matrix on a sliver of the platform board. */
+.led {
+  flex: none;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: var(--board);
+  background-image: radial-gradient(circle, rgb(255 177 59 / 0.07) 0 1px, transparent 1.5px);
+  background-size: 4px 4px;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.8);
+  color: var(--amber);
+  font-family: var(--font-led);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.led[data-status='idle'],
+.led[data-status='paused'] {
+  color: var(--amber-dim);
+}
+
+.led[data-status='error'],
+.led[data-status='offline'] {
+  color: var(--led-red);
+}
+
+.dock__play {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-right: 2px;
+  border-radius: 50%;
+  background: var(--porcelain);
+  color: var(--enamel);
+  transition: scale 160ms var(--ease-out);
+}
+
+.dock__play:active {
+  scale: 0.92;
+  transition-duration: 60ms;
+}
+
+.dock__play .spinner {
+  inset: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+}
+
+@keyframes dock-in {
+  from {
+    translate: 0 calc(100% + 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock {
+    animation-name: fade-only;
+  }
+}

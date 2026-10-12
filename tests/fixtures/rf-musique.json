@@ -1,0 +1,54 @@
+{
+  "prev": [
+    {
+      "firstLine": "Le direct",
+      "firstLineUuid": null,
+      "firstLinePath": null,
+      "secondLine": "Ce monde a besoin de musique",
+      "cover": "f09aeb9c-256c-40c5-982f-7170323bdfc3",
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "now": {
+    "firstLine": "Retour de plage",
+    "firstLinePath": "francemusique/podcasts/retour-de-plage",
+    "firstLineUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "firstLineExpressionUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "firstLineUuidPath": "francemusique/podcasts/retour-de-plage/villes-d-europe-londres-berlin-rome-6239340",
+    "firstLineUuidUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "firstLineUuidExpressionUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "firstLinePathPath": "francemusique/podcasts/retour-de-plage",
+    "firstLinePathUuid": "59b167d0-8b96-4ea6-a94d-e56c37587009",
+    "firstLinePathConceptUuid": "59b167d0-8b96-4ea6-a94d-e56c37587009",
+    "secondLine": "Villes d'Europe (Londres, Berlin, Rome…)",
+    "secondLinePath": "francemusique/podcasts/retour-de-plage/villes-d-europe-londres-berlin-rome-6239340",
+    "secondLineUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "secondLineExpressionUuid": "029006c0-4894-4cfe-a39e-57dc33982a7e",
+    "cover": "e85b9509-174d-4f9a-893c-89df30d40b0a",
+    "startTime": 1791734400,
+    "endTime": 1791741510
+  },
+  "next": [
+    {
+      "firstLine": "Le Disque contemporain de la semaine",
+      "firstLinePath": "francemusique/podcasts/le-disque-contemporain-de-la-semaine",
+      "firstLineUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "firstLineExpressionUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "firstLineUuidPath": "francemusique/podcasts/le-disque-contemporain-de-la-semaine/they-have-waited-long-enough-ragazze-quartet-katharine-dain-5487380",
+      "firstLineUuidUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "firstLineUuidExpressionUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "firstLinePathPath": "francemusique/podcasts/le-disque-contemporain-de-la-semaine",
+      "firstLinePathUuid": "bc5da5fe-3e0f-41cf-a4e9-02e1782d49e4",
+      "firstLinePathConceptUuid": "bc5da5fe-3e0f-41cf-a4e9-02e1782d49e4",
+      "secondLine": "They Have Waited Long Enough - Ragazze Quartet, Katharine Dain",
+      "secondLinePath": "francemusique/podcasts/le-disque-contemporain-de-la-semaine/they-have-waited-long-enough-ragazze-quartet-katharine-dain-5487380",
+      "secondLineUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "secondLineExpressionUuid": "b389d46f-da06-4b4b-8dfe-7733dfa608f3",
+      "cover": "f09aeb9c-256c-40c5-982f-7170323bdfc3",
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "delayToRefresh": 3600000
+}

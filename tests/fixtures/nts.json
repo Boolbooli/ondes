@@ -1,0 +1,74 @@
+{
+ "results": [
+  {
+   "channel_name": "1",
+   "now": {
+    "broadcast_title": "A Month of Sundays w/ Bill Spencer",
+    "start_timestamp": "2026-10-11T17:00:00+01:00",
+    "end_timestamp": "2026-10-11T18:00:00+01:00",
+    "embeds": {
+     "details": {
+      "name": "A Month of Sundays w/ Bill Spencer",
+      "description": "Bill Spencer shares weekend recordings from his living room studio in Detroit, Michigan, from where he brings a range of soulful jazz rock, and ambient sounds, ",
+      "location_long": "Detroit",
+      "media": {
+       "picture_medium": "https://media.ntslive.co.uk/resize/400x400/92a0b080-b13d-4016-8e15-0603d4d80065_1655683200.png",
+       "picture_medium_large": "https://media2.ntslive.co.uk/resize/800x800/92a0b080-b13d-4016-8e15-0603d4d80065_1655683200.png"
+      }
+     }
+    }
+   },
+   "next": {
+    "broadcast_title": "m00dtapes",
+    "start_timestamp": "2026-10-11T18:00:00+01:00",
+    "end_timestamp": "2026-10-11T19:00:00+01:00",
+    "embeds": {
+     "details": {
+      "name": "m00dtapes",
+      "description": "Music Supervisor and DJ Dhamirah Coombes brings a monthly multi-genre curation of m00d-bending tracks intended for a deep listening experience.",
+      "location_long": "London",
+      "media": {
+       "picture_medium": "https://media.ntslive.co.uk/resize/400x400/89b8437e-819f-42ce-b238-296c0c01d4f1_1791676800.jpeg",
+       "picture_medium_large": "https://media2.ntslive.co.uk/resize/800x800/89b8437e-819f-42ce-b238-296c0c01d4f1_1791676800.jpeg"
+      }
+     }
+    }
+   }
+  },
+  {
+   "channel_name": "2",
+   "now": {
+    "broadcast_title": "Hip-Hop &amp; Soul w/ Guests",
+    "start_timestamp": "2026-10-11T17:00:00+01:00",
+    "end_timestamp": "2026-10-11T19:00:00+01:00",
+    "embeds": {
+     "details": {
+      "name": "Post Punk Britain: Off Cuts - Comps, Zines, & Tapes from the UK Post Punk Era",
+      "description": "This episode covers music from bands who existed mostly only fleetingly, with one or two songs under their name, off cuts from compilations, magazine supplement",
+      "location_long": "London",
+      "media": {
+       "picture_medium": "https://media.ntslive.co.uk/resize/400x400/67b23f93-46b6-4cca-9a47-145a4ad33c1c_1684108800.jpeg",
+       "picture_medium_large": "https://media2.ntslive.co.uk/resize/800x800/67b23f93-46b6-4cca-9a47-145a4ad33c1c_1684108800.jpeg"
+      }
+     }
+    }
+   },
+   "next": {
+    "broadcast_title": "Post Punk Britain: In Focus - Martin Hannett (R)",
+    "start_timestamp": "2026-10-11T19:00:00+01:00",
+    "end_timestamp": "2026-10-11T21:00:00+01:00",
+    "embeds": {
+     "details": {
+      "name": "Post Punk Britain: In Focus - Martin Hannett",
+      "description": "This episode explores the work James Martin Hannett, initially credited as Martin Zero, the British record producer, musician and an original partner/director a",
+      "location_long": "Manchester",
+      "media": {
+       "picture_medium": "https://media.ntslive.co.uk/resize/400x400/5a85f3fc-b18a-4879-bc27-cc47e35a62d1_1683849600.jpeg",
+       "picture_medium_large": "https://media2.ntslive.co.uk/resize/800x800/5a85f3fc-b18a-4879-bc27-cc47e35a62d1_1683849600.jpeg"
+      }
+     }
+    }
+   }
+  }
+ ]
+}

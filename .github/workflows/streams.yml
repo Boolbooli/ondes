@@ -1,0 +1,28 @@
+# Weekly check that every station still streams, rewinds and announces its programmes.
+# A failed run means a station has no working source left: GitHub emails the repository owner.
+# Warnings (a fallback source down, now-playing data missing) appear in the run summary.
+name: Vérifier les flux
+
+on:
+  schedule:
+    - cron: '23 5 * * 1' # Mondays, 05:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  streams:
+    name: Flux des stations
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check:streams

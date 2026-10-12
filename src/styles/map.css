@@ -1,0 +1,316 @@
+/*
+ * The strip map. The rail runs down a fixed axis; each stop puts its dot on the axis level with
+ * the first line of its name. The script reads the marker's position from the dot's offsets, so
+ * `.map` is the positioned ancestor, `.stop` is relative and `.stop__dot` is absolute.
+ */
+.map {
+  --axis: 28px;
+  --dot: 18px;
+  --rail: 8px;
+  --pad: 14px;
+  --name-size: 1.1875rem;
+  --name-lh: 1.25;
+  --dot-center: calc(var(--pad) + var(--name-size) * var(--name-lh) / 2);
+  position: relative;
+}
+
+.stop {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.stop::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--axis) - var(--rail) / 2);
+  width: var(--rail);
+  background: var(--line-ink);
+}
+
+/* The line ends at its termini. */
+.stop:first-child::before {
+  top: var(--dot-center);
+}
+
+.stop:last-child::before {
+  bottom: auto;
+  height: var(--dot-center);
+}
+
+.stop:only-child::before {
+  content: none;
+}
+
+.stop__dot {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--dot-center) - var(--dot) / 2);
+  left: calc(var(--axis) - var(--dot) / 2);
+  width: var(--dot);
+  height: var(--dot);
+  border: 3.5px solid var(--line-ink);
+  border-radius: 50%;
+  background: var(--stop-fill);
+  pointer-events: none;
+}
+
+/* Stops the marker passes light up in turn. */
+.stop__dot.is-waking {
+  animation: dot-wake 420ms var(--ease-out) var(--wake-delay, 0ms) both;
+}
+
+.stop__btn {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  min-height: 64px;
+  padding: var(--pad) 8px var(--pad) calc(var(--axis) + 26px);
+  text-align: left;
+  isolation: isolate;
+}
+
+.stop__btn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 4px 0 4px calc(var(--axis) + 16px);
+  border-radius: 12px;
+  background: var(--press);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease-out;
+}
+
+@media (hover: hover) {
+  .stop__btn:hover::after {
+    opacity: 0.5;
+  }
+}
+
+.stop__btn:active::after {
+  opacity: 1;
+  transition-duration: 0ms;
+}
+
+.stop__btn:focus-visible {
+  outline: none;
+}
+
+.stop__btn:focus-visible::after {
+  background: transparent;
+  outline: 3px solid var(--text);
+  opacity: 1;
+}
+
+.stop__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: var(--name-size);
+  font-weight: 700;
+  font-stretch: 87.5%;
+  line-height: var(--name-lh);
+}
+
+.stop__meta {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.stop__status {
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.stop__tools {
+  display: flex;
+  flex: none;
+  gap: 2px;
+  margin-top: calc(var(--dot-center) - 22px);
+  animation: tools-in 240ms var(--ease-out) both;
+}
+
+.icon-btn--tool {
+  color: var(--text-2);
+}
+
+.icon-btn--remove {
+  color: var(--danger);
+}
+
+/*
+ * “Vous êtes ici”: a porcelain ring that travels along the rail. Its transform is set inline by
+ * the script, so animations here must use `scale`, `rotate` and `translate`, never `transform`.
+ */
+.map__marker {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: calc(var(--axis) - 18px);
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.map__marker::before,
+.map__marker::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.map__marker::before {
+  inset: 0;
+  border: 3px solid var(--text);
+  background: var(--ground);
+  box-shadow: 0 0 0 3px var(--ground);
+}
+
+.map__marker::after {
+  inset: 7px;
+}
+
+.map__marker[data-status='playing']::after {
+  background: var(--line-ink);
+}
+
+.map__marker[data-status='paused']::after,
+.map__marker[data-status='idle']::after {
+  box-shadow: inset 0 0 0 3px var(--line-ink);
+}
+
+.map__marker[data-status='loading']::after,
+.map__marker[data-status='retrying']::after {
+  border: 3px solid var(--line-ink);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: marker-seek 1.2s linear infinite;
+}
+
+.map__marker[data-status='error']::after,
+.map__marker[data-status='offline']::after {
+  background: var(--text-3);
+}
+
+.map__marker.is-arriving::before,
+.map__marker.is-arriving::after {
+  animation: marker-arrive 360ms var(--ease-out) both;
+}
+
+/* Same names in the same order, so a change of status does not replay the arrival. */
+.map__marker.is-arriving[data-status='loading']::after,
+.map__marker.is-arriving[data-status='retrying']::after {
+  animation:
+    marker-arrive 360ms var(--ease-out) both,
+    marker-seek 1.2s linear infinite;
+}
+
+/* —— An empty line, dashed like a line under construction —— */
+
+.empty {
+  display: flex;
+  gap: 18px;
+  padding-top: 8px;
+}
+
+.empty__track {
+  flex: none;
+  width: 56px;
+  height: 168px;
+}
+
+.empty__track path {
+  fill: none;
+  stroke: var(--line-ink);
+}
+
+.empty__track circle {
+  fill: var(--stop-fill);
+  stroke: var(--line-ink);
+  stroke-width: 3.5;
+}
+
+.empty__text {
+  max-width: 34ch;
+  padding-top: 8px;
+}
+
+.empty__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-stretch: 87.5%;
+  line-height: 1.2;
+}
+
+.empty__body {
+  margin-top: 6px;
+  color: var(--text-2);
+}
+
+.empty .pill-btn {
+  margin-top: 18px;
+}
+
+@keyframes dot-wake {
+  40% {
+    scale: 1.35;
+    background: var(--line-ink);
+  }
+}
+
+@keyframes marker-arrive {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+}
+
+@keyframes marker-seek {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes tools-in {
+  from {
+    opacity: 0;
+    translate: 8px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map__marker::before,
+  .map__marker::after,
+  .map__marker.is-arriving::before,
+  .map__marker.is-arriving::after,
+  .map__marker.is-arriving[data-status='loading']::after,
+  .map__marker.is-arriving[data-status='retrying']::after {
+    animation: none;
+  }
+
+  .stop__dot.is-waking {
+    animation: none;
+  }
+
+  .stop__tools {
+    animation-name: fade-only;
+  }
+}

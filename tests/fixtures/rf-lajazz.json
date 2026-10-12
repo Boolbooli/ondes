@@ -1,0 +1,36 @@
+{
+  "prev": [
+    {
+      "firstLine": "La Jazz",
+      "firstLinePath": "francemusique/radio-jazz",
+      "secondLine": "Tout le jazz, instrumental et vocal.",
+      "cover": "eb79d2dd-d522-4bdd-ae95-48dbd6cddc35",
+      "favoriteUuid": null,
+      "startTime": null,
+      "endTime": null
+    }
+  ],
+  "now": {
+    "firstLine": "La Jazz",
+    "firstLinePath": "francemusique/radio-jazz",
+    "secondLine": "Airelle Besson • People's thoughts",
+    "secondLineSongUuid": "8a9a7dad-5a4e-4566-bdaf-5a23e377a536",
+    "cover": "7b55506d-86ef-4255-8c01-fa859b44a3e8",
+    "favoriteUuid": "8a9a7dad-5a4e-4566-bdaf-5a23e377a536",
+    "startTime": 1791734693,
+    "endTime": 1791735014
+  },
+  "next": [
+    {
+      "firstLine": "La Jazz",
+      "firstLinePath": "francemusique/radio-jazz",
+      "secondLine": "Ghost Rhythms • Thoughtography",
+      "secondLineSongUuid": "404a84c4-5943-44e4-bde7-4904bf55607c",
+      "cover": "ce1a1f5e-0b73-435a-a560-60398192c4b0",
+      "favoriteUuid": "404a84c4-5943-44e4-bde7-4904bf55607c",
+      "startTime": 1791735013,
+      "endTime": 1791735382
+    }
+  ],
+  "delayToRefresh": 260000
+}
